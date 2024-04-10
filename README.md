@@ -1,4 +1,4 @@
-# third_step
+# Third step
 
 This is my third Flutter app.
 Here an simple example of chat page made with Firebase
