@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "960088574839",
+    "firebase_url": "https://chat-de58d-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "chat-de58d",
+    "storage_bucket": "chat-de58d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960088574839:android:642735f0a368d0e5522f72",
+        "android_client_info": {
+          "package_name": "com.example.third_step"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOpXZFH_Rkejo3Sfeevu8avQv-qUlcl6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
