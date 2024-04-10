@@ -128,75 +128,71 @@ class _MessagesWidget extends StatelessWidget {
                       .reversed
                       .toList();
 
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: ListView.builder(
-                        reverse: true,
-                        keyboardDismissBehavior:
-                            ScrollViewKeyboardDismissBehavior.onDrag,
-                        controller: model.scrollController,
-                        itemCount: data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          var me = data[index]['uID'] == 1;
-                          const radius = Radius.circular(18);
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Align(
-                              alignment: me
-                                  ? Alignment.centerRight
-                                  : Alignment.centerLeft,
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                    color: me
-                                        ? const Color.fromARGB(
-                                            255, 169, 188, 221)
-                                        : const Color.fromARGB(
-                                            255, 228, 234, 244),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: radius,
-                                      topRight: radius,
-                                      bottomLeft: me ? radius : Radius.zero,
-                                      bottomRight: me ? Radius.zero : radius,
-                                    )),
-                                child: Stack(
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          ConstrainedBox(
-                                            constraints: BoxConstraints(
-                                                maxWidth:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width -
-                                                        100),
-                                            child: Text(
-                                              data[index]['message'],
-                                              style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 97, 94, 94)),
-                                            ),
+                  return ListView.builder(
+                      reverse: true,
+                      keyboardDismissBehavior:
+                          ScrollViewKeyboardDismissBehavior.onDrag,
+                      controller: model.scrollController,
+                      itemCount: data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var me = data[index]['uID'] == 1;
+                        const radius = Radius.circular(18);
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                            alignment: me
+                                ? Alignment.centerRight
+                                : Alignment.centerLeft,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                  color: me
+                                      ? const Color.fromARGB(255, 169, 188, 221)
+                                      : const Color.fromARGB(
+                                          255, 228, 234, 244),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: radius,
+                                    topRight: radius,
+                                    bottomLeft: me ? radius : Radius.zero,
+                                    bottomRight: me ? Radius.zero : radius,
+                                  )),
+                              child: Stack(
+                                children: [
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        ConstrainedBox(
+                                          constraints: BoxConstraints(
+                                              maxWidth:
+                                                  MediaQuery.sizeOf(context)
+                                                          .width -
+                                                      100),
+                                          child: Text(
+                                            data[index]['message'],
+                                            style: const TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 97, 94, 94)),
                                           ),
-                                          const SizedBox(width: 20),
-                                        ],
-                                      ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                      ],
                                     ),
-                                    Positioned(
-                                      right: 8,
-                                      bottom: 3,
-                                      child: Text(
-                                        data[index]['time'].toString(),
-                                        style: const TextStyle(fontSize: 10),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                  ),
+                                  Positioned(
+                                    right: 8,
+                                    bottom: 3,
+                                    child: Text(
+                                      data[index]['time'].toString(),
+                                      style: const TextStyle(fontSize: 10),
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
-                          );
-                        }),
-                  );
+                          ),
+                        );
+                      });
                 }),
           ),
         ),
