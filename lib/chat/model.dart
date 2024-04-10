@@ -6,6 +6,7 @@ import 'package:third_step/chat/chat_page.dart';
 
 class Model extends ChangeNotifier {
   Model() {
+    getLastMessage();
     messageController.addListener(() {
       toggleFAB();
       toggleIcons();
@@ -15,11 +16,11 @@ class Model extends ChangeNotifier {
   }
 
   var message = '';
+  var lastMessage = '';
   final messageController = TextEditingController();
   final scrollController = ScrollController();
 
   final db = FirebaseFirestore.instance;
-  // var isKeyBoardVisible = false;
   var isTextEmpty = true;
   var fAB = false;
 
@@ -44,6 +45,15 @@ class Model extends ChangeNotifier {
     }
   }
 
+  void getLastMessage() {
+    db.collection('chatWithMyFriend').orderBy('timestamp').get().then(
+      (querySnapshot) {
+        lastMessage = querySnapshot.docs.last.data()['message'];
+        notifyListeners();
+      },
+    );
+  }
+
   final Stream<QuerySnapshot> messagesStream = FirebaseFirestore.instance
       .collection('chatWithMyFriend')
       .orderBy('timestamp')
@@ -62,6 +72,7 @@ class Model extends ChangeNotifier {
     db.collection("chatWithMyFriend").add(chatMessage);
     messageController.clear();
     scrollToBottom();
+    getLastMessage();
   }
 
   void saveMyFriendsMessage(BuildContext context) {
@@ -75,6 +86,7 @@ class Model extends ChangeNotifier {
     db.collection("chatWithMyFriend").add(chatMessage);
     messageController.clear();
     scrollToBottom();
+    getLastMessage();
   }
 
   void scrollToBottom() {

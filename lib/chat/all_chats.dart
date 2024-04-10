@@ -36,10 +36,11 @@ class _RowChatInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    final model = ModelProvider.watch(context)?.model;
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ClipRRect(
+        const ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(40)),
           child: SizedBox(
               height: 60,
@@ -48,14 +49,23 @@ class _RowChatInfoWidget extends StatelessWidget {
                   decoration: BoxDecoration(color: Colors.black),
                   child: Image(image: AssetImage('images/ain.jpg')))),
         ),
-        SizedBox(width: 10),
-        Text(
-          'My Friend',
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ),
+        const SizedBox(width: 10),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'My Friend',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
+            Text(
+              model?.lastMessage ?? '',
+              style: const TextStyle(color: Color.fromARGB(255, 93, 93, 93)),
+            ),
+          ],
         ),
       ],
     );
